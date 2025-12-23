@@ -1,10 +1,8 @@
-#ifndef FRACTION_H
-#define FRACTION_H
-
 #include <iostream>
 #include <numeric> // for gcd
 #include <algorithm> // for std::swap
 #include <compare> // for <=> operator
+#include "fraction.h"
 using namespace std;
 
 // Fraction class to represent rational numbers
@@ -112,16 +110,16 @@ public:
         return *this;
     }
 
-    // Equality operator
-    bool operator==(const Fraction& other) const {
-        return numerator == other.numerator && denominator == other.denominator;
-    }
-
     // Comparison operator (C++20 spaceship operator)
     auto operator<=>(const Fraction& other) const {
         long long lhs = numerator * other.denominator;
         long long rhs = other.numerator * denominator;
         return lhs <=> rhs;
+    }
+
+    // Equality operator
+    bool operator==(const Fraction& other) const {
+        return numerator == other.numerator && denominator == other.denominator;
     }
 
     // Output operator
@@ -134,5 +132,3 @@ public:
         return os;
     }
 };
-
-#endif // FRACTION_H
