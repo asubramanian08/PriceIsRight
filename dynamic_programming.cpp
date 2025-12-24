@@ -1,5 +1,6 @@
 #include <cassert>
 #include <iostream>
+#include <vector>
 #include "fraction.cpp"
 using namespace std;
 
@@ -21,7 +22,9 @@ Fraction first_player_policy_probability[3]; // incorporate first player policy 
 
 // ---- Policies -----
 // NOTE: If spin1 = 0, then return 1 if you wanted to not even do a first spin and 0 if you'll skip first spin
-// NOTE: If you don't want to base your policy on knowing other player's, ignore policy_probability array
+// PROBLEM: We give C1 and C2 data in their policies that describe exactly what later contestants policies are
+//      something they don't have access to in a contest
+//      If you really want to simulate without this knowledge, don't use the DP values in the policy
 
 // Optimal 3rd player policy (for winning game): Spin again if less than max score
 Fraction third_player_optimal_policy(int player1_score, int player2_score, int spin1) {
@@ -43,7 +46,7 @@ Fraction second_player_optimal_policy(int player1_score, int spin1) {
     return (win_prob_if_spin > win_prob_if_no_spin) ? Fraction(1, 1) : Fraction(0, 1);
 }
 
-// Optimal 2nd player policy (for winning game) -- ASSUMING 2ND & 3RD PLAYER ACTS ACCORDING TO THEIR POLICY
+// Optimal 1st player policy (for winning game) -- ASSUMING 2ND & 3RD PLAYER ACTS ACCORDING TO THEIR POLICY
 Fraction first_player_optimal_policy(int spin1) {
     if (spin1 == 0) {
         return Fraction(0, 1); // Always do a first spin
@@ -62,68 +65,71 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
     // Calculate the 3rd player's options
     for (int p1 = 0; p1 <= 20; p1++) // player 1 total score
         for (int p2 = 0; p2 <= 20; p2++) // player 2 total score
-            for (int spin = 0; spin <= 20; spin++) // player 3 spin (NOTE: 0 means they choose not to spin)
+            for (int spin1 = 0; spin1 <= 20; spin1++) // player 3 spin (NOTE: 0 means they choose not to spin)
                 for (int spinAgain = 0; spinAgain <= 1; spinAgain++) // spin again [1] or not [0]
                 {
-                    // Calculate the win probabilities for player 3 based on the decision
-                    Fraction win_prob_player3;
+                    // Initialize the win probabilities & other variables
+                    Fraction player1_win(0, 1);
+                    Fraction player2_win(0, 1);
+                    Fraction player3_win(0, 1);
+                    int max_score = max(p1, p2);
+                    int winning_player = (p1 >= p2) ? 0 : 1; // 0 for player 1, 1 for player 2
+                    
+                    // Calculate win probabilities
                     if (spinAgain == 0) { // Don't spin again
-                        if (spin > p1 && spin > p2) {
-                            win_prob_player3 = Fraction(1, 1); // Wins outright
-                        } else if (spin == p1 && spin == p2) {
-                            win_prob_player3 = Fraction(1, 3); // Three-way tie (spinoff)
-                        } else if (spin == max(p1, p2)) {
-                            win_prob_player3 = Fraction(1, 2); // Two-way tie (spinoff)
-                        } else {
-                            win_prob_player3 = Fraction(0, 1); // Loses outright
+                        if (spin1 > max_score) {
+                            player3_win = Fraction(1, 1); // wins outright (everything else 0)
+                        } else if (spin1 < max_score) {
+                            (winning_player == 0 ? player1_win : player2_win) = Fraction(1, 1); // p3 looses
+                        } else { // tie with winning player
+                            if (p1 == p2) { // three-way tie
+                                player1_win = player2_win = player3_win = Fraction(1, 3);
+                            } else { // two-way tie
+                                (winning_player == 0 ? player1_win : player2_win) = Fraction(1, 2);
+                                player3_win = Fraction(1, 2);
+                            }
                         }
                     } else { // Spin again
                         Fraction prob_new_spin(1, 20); // Uniform probability for each spin
-                        for (int new_spin = 1; new_spin <= 20; new_spin++) {
+                        for (int spin2 = 1; spin2 <= 20; spin2++) {
                             // NOTE: If you spin 0 when spin again, its like spinning once
-                            // NOTE: if you bust but everyone else busts, there is a one spin, spinoff
-                            if (new_spin + spin > 20) { // bust (3rd might win if others busted)
-                                win_prob_player3 += prob_new_spin * Fraction((p1 + p2 == 0 ? 1 : 0), 3);
-                            } else if (new_spin + spin > p1 && new_spin + spin > p2) {
-                                win_prob_player3 += prob_new_spin * Fraction(1, 1); // wins outright
-                            } else if (new_spin + spin == p1 && new_spin + spin == p2) {
-                                win_prob_player3 += prob_new_spin * Fraction(1, 3); // three-way tie
-                            } else if (new_spin + spin == max(p1, p2)) { 
-                                win_prob_player3 += prob_new_spin * Fraction(1, 2); // two-way tie
-                            } else {
-                                win_prob_player3 += prob_new_spin * Fraction(0, 1); // loses outright
+                            // NOTE: if you bust but everyone else busts, there is a spinoff of one spin
+                            int total_score = (spin1 + spin2 > 20) ? 0 : spin1 + spin2;
+                            if (total_score > max_score) {
+                                player3_win += prob_new_spin * Fraction(1, 1); // wins outright (everything else 0)
+                            } else if (total_score < max_score) {
+                                (winning_player == 0 ? player1_win : player2_win) += prob_new_spin * Fraction(1, 1); // p3 looses
+                            } else { // tie with winning player
+                                if (p1 == p2) { // three-way tie
+                                    player1_win += prob_new_spin * Fraction(1, 3);
+                                    player2_win += prob_new_spin * Fraction(1, 3);
+                                    player3_win += prob_new_spin * Fraction(1, 3);
+                                } else { // two-way tie
+                                    (winning_player == 0 ? player1_win : player2_win) += prob_new_spin * Fraction(1, 2);
+                                    player3_win += prob_new_spin * Fraction(1, 2);
+                                }
                             }
                         }
                     }
+                    assert((player1_win + player2_win + player3_win) == Fraction(1, 1)); // Ensure probabilities sum to 1
 
                     // Store the calculated probability
-                    third_player_probability[p1][p2][spin][spinAgain][2] = win_prob_player3;
-
-                    // Calculate and store probabilities for players 1 and 2 similarly
-                    if (p1 == p2)
-                        third_player_probability[p1][p2][spin][spinAgain][0]
-                            = third_player_probability[p1][p2][spin][spinAgain][1]
-                            = Fraction(1, 2) * (Fraction(1, 1) - win_prob_player3);
-                    else // p1 != p2
-                    {
-                        third_player_probability[p1][p2][spin][spinAgain][(p1 > p2 ? 0 : 1)] = Fraction(1, 1) - win_prob_player3; // winner
-                        third_player_probability[p1][p2][spin][spinAgain][(p1 > p2 ? 1 : 0)] = Fraction(0, 1); // loser
-                    }
+                    third_player_probability[p1][p2][spin1][spinAgain][0] = player1_win;
+                    third_player_probability[p1][p2][spin1][spinAgain][1] = player2_win;
+                    third_player_probability[p1][p2][spin1][spinAgain][2] = player3_win;
                 }
 
     // Calculate third person win rate based on their policy
     for (int p1 = 0; p1 <= 20; p1++) // player 1 total score
         for (int p2 = 0; p2 <= 20; p2++) // player 2 total score
         {
-            // If policy wants to spin first spin
-            if (third_player_policy(p1, p2, 0) == Fraction(1, 1)) {
-                third_player_policy_probability[p1][p2][0] = third_player_probability[p1][p2][0][0][0]; // player 1 win
-                third_player_policy_probability[p1][p2][1] = third_player_probability[p1][p2][0][0][1]; // player 2 win
-                third_player_policy_probability[p1][p2][2] = third_player_probability[p1][p2][0][0][2]; // player 3 win
-                continue; // skip to next
-            }
+            // If policy wants to skip first spin
+            Fraction prob_of_first_spin = third_player_policy(p1, p2, 0);
+            third_player_policy_probability[p1][p2][0] = prob_of_first_spin * third_player_probability[p1][p2][0][0][0]; // player 1 win
+            third_player_policy_probability[p1][p2][1] = prob_of_first_spin * third_player_probability[p1][p2][0][0][1]; // player 2 win
+            third_player_policy_probability[p1][p2][2] = prob_of_first_spin * third_player_probability[p1][p2][0][0][2]; // player 3 win
             
-            // Set all values to zero
+            // Set all values to zero (for non first spin part)
             Fraction player1_win(0, 1);
             Fraction player2_win(0, 1);
             Fraction player3_win(0, 1);
@@ -143,9 +149,9 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
             assert((player1_win + player2_win + player3_win) == Fraction(1, 1)); // Ensure probabilities sum to 1
 
             // Set all array values
-            third_player_policy_probability[p1][p2][0] = player1_win;
-            third_player_policy_probability[p1][p2][1] = player2_win;
-            third_player_policy_probability[p1][p2][2] = player3_win;
+            third_player_policy_probability[p1][p2][0] += (Fraction(1, 1) - prob_of_first_spin) * player1_win;
+            third_player_policy_probability[p1][p2][1] += (Fraction(1, 1) - prob_of_first_spin) * player2_win;
+            third_player_policy_probability[p1][p2][2] += (Fraction(1, 1) - prob_of_first_spin) * player3_win;
         }
 
     // Calculate the 2nd player's options
@@ -182,15 +188,13 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
     // Calculate the second person win rate based on their policy
     for (int p1 = 0; p1 <= 20; p1++) // player 1 total score
     {
-        // If policy wants to spin first spin
-        if (second_player_policy(p1, 0) == Fraction(1, 1)) {
-            second_player_policy_probability[p1][0] = second_player_probability[p1][0][0][0]; // player 1 win
-            second_player_policy_probability[p1][1] = second_player_probability[p1][0][0][1]; // player 2 win
-            second_player_policy_probability[p1][2] = second_player_probability[p1][0][0][2]; // player 3 win
-            continue; // skip to next
-        }
+        // If policy wants to skip first spin
+        Fraction prob_of_first_spin = second_player_policy(p1, 0);
+        second_player_policy_probability[p1][0] = prob_of_first_spin * second_player_probability[p1][0][0][0]; // player 1 win
+        second_player_policy_probability[p1][1] = prob_of_first_spin * second_player_probability[p1][0][0][1]; // player 2 win
+        second_player_policy_probability[p1][2] = prob_of_first_spin * second_player_probability[p1][0][0][2]; // player 3 win
         
-        // Set all values to zero
+        // Set all values to zero (for non first spin part)
         Fraction player1_win(0, 1);
         Fraction player2_win(0, 1);
         Fraction player3_win(0, 1);
@@ -210,9 +214,9 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
         assert((player1_win + player2_win + player3_win) == Fraction(1, 1)); // Ensure probabilities sum to 1
 
         // Set all array values
-        second_player_policy_probability[p1][0] = player1_win;
-        second_player_policy_probability[p1][1] = player2_win;
-        second_player_policy_probability[p1][2] = player3_win;
+        second_player_policy_probability[p1][0] += (Fraction(1, 1) - prob_of_first_spin) * player1_win;
+        second_player_policy_probability[p1][1] += (Fraction(1, 1) - prob_of_first_spin) * player2_win;
+        second_player_policy_probability[p1][2] += (Fraction(1, 1) - prob_of_first_spin) * player3_win;
     }
 
     // Calculate the 1st player's options
@@ -232,8 +236,8 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
                 
                 // Run 20 possible new spins
                 Fraction prob_new_spin(1, 20); // Uniform probability for each spin
-                for (int new_spin = 1; new_spin <= 20; new_spin++) {
-                    int p1total = (spin1 + new_spin > 20) ? 0 : spin1 + new_spin;
+                for (int spin2 = 1; spin2 <= 20; spin2++) {
+                    int p1total = (spin1 + spin2 > 20) ? 0 : spin1 + spin2;
                     first_player_probability[spin1][spinAgain][0] += prob_new_spin * second_player_policy_probability[p1total][0];
                     first_player_probability[spin1][spinAgain][1] += prob_new_spin * second_player_policy_probability[p1total][1];
                     first_player_probability[spin1][spinAgain][2] += prob_new_spin * second_player_policy_probability[p1total][2];
@@ -246,14 +250,14 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
         }
 
     // Calculate the first person win rate based on their policy
-    if (first_player_policy(0) == Fraction(1, 1)) { // If policy wants to spin first spin
-        first_player_policy_probability[0] = first_player_probability[0][0][0]; // player 1 win
-        first_player_policy_probability[1] = first_player_probability[0][0][1]; // player 2 win
-        first_player_policy_probability[2] = first_player_probability[0][0][2]; // player 3 win
-    }
-    else { // If you do a first spin (normal)
+    {
+        // If the policy wants to skip first spin
+        Fraction prob_of_first_spin = first_player_policy(0);
+        first_player_policy_probability[0] = prob_of_first_spin * first_player_probability[0][0][0]; // player 1 win
+        first_player_policy_probability[1] = prob_of_first_spin * first_player_probability[0][0][1]; // player 2 win
+        first_player_policy_probability[2] = prob_of_first_spin * first_player_probability[0][0][2]; // player 3 win
         
-        // Set all values to zero
+        // Set all values to zero (for non first spin part)
         Fraction player1_win(0, 1);
         Fraction player2_win(0, 1);
         Fraction player3_win(0, 1);
@@ -273,17 +277,110 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
         assert((player1_win + player2_win + player3_win) == Fraction(1, 1)); // Ensure probabilities sum to 1
 
         // Set all array values
-        first_player_policy_probability[0] = player1_win;
-        first_player_policy_probability[1] = player2_win;
-        first_player_policy_probability[2] = player3_win;
+        first_player_policy_probability[0] += (Fraction(1, 1) - prob_of_first_spin) * player1_win;
+        first_player_policy_probability[1] += (Fraction(1, 1) - prob_of_first_spin) * player2_win;
+        first_player_policy_probability[2] += (Fraction(1, 1) - prob_of_first_spin) * player3_win;
     }
 }
+
+
+// -- Simulate Game --
+// probabilistic decision: return true with probability prob
+bool random_decision(Fraction prob) {
+    long long rand_num = rand() % prob.getDenominator();
+    return rand_num < prob.getNumerator();
+}
+// simulation function that returns 3 fraction values Fraction[3]
+vector<Fraction> simulate_game(
+    Fraction (*third_player_policy)(int p1, int p2, int spin),
+    Fraction (*second_player_policy)(int p1, int spin),
+    Fraction (*first_player_policy)(int spin),
+    long long num_simulations)
+{
+    // Assuming DP tables have been initialized
+
+    // initialize score variables
+    long long p1_wins = 0;
+    long long p2_wins = 0;
+    long long p3_wins = 0;
+    srand(time(0)); // seed random number generator
+
+    // Loop many times
+    for (long long sim = 0; sim < num_simulations; sim++) {
+        
+        // Player 1's turn
+        int p1_total = 0;
+        if (!random_decision(first_player_policy(0))) { // Don't skip first spin
+            int p1_total = rand() % 20 + 1; // first spin
+            Fraction policy1 = first_player_policy(p1_total); // Probability of spinning again
+            if (random_decision(policy1)) { // spin again
+                p1_total += rand() % 20 + 1;
+                if (p1_total > 20) // bust
+                    p1_total = 0;
+            }
+        }
+
+        // Player 2's turn
+        int p2_total = 0;
+        if (!random_decision(second_player_policy(p1_total, 0))) { // Don't skip first spin
+            int p2_total = rand() % 20 + 1; // first spin
+            Fraction policy2 = second_player_policy(p1_total, p2_total); // Probability of spinning again
+            if (random_decision(policy2)) { // spin again
+                p2_total += rand() % 20 + 1;
+                if (p2_total > 20) // bust
+                    p2_total = 0;
+            }
+        }
+
+        // Player 3's turn
+        int p3_total = 0;
+        if (!random_decision(third_player_policy(p1_total, p2_total, 0))) { // Don't skip first spin
+            int p3_total = rand() % 20 + 1; // first spin
+            Fraction policy3 = third_player_policy(p1_total, p2_total, p3_total); // Probability of spinning again
+            if (random_decision(policy3)) { // spin again
+                p3_total += rand() % 20 + 1;
+                if (p3_total > 20) // bust
+                    p3_total = 0;   
+            }
+        }
+
+        // Determine winner
+        int max_score = max(p1_total, max(p2_total, p3_total));
+        int num_winners = (p1_total == max_score) + (p2_total == max_score) + (p3_total == max_score);
+        int selected_winner = rand() % num_winners; // select among winners uniformly (ASSUME SPIN OFF IS UNIFORM)
+        if (p1_total == max_score) {
+            if (selected_winner == 0) {
+                p1_wins++;
+                continue;
+            }
+            selected_winner--;
+        }
+        if (p2_total == max_score) {
+            if (selected_winner == 0) {
+                p2_wins++;
+                continue;
+            }
+            selected_winner--;
+        }
+        if (p3_total == max_score) {
+            p3_wins++;
+            continue;
+        }
+    }
+
+    // Return win probabilities
+    return {Fraction(p1_wins, num_simulations), Fraction(p2_wins, num_simulations), Fraction(p3_wins, num_simulations)};
+}
+
+
 
 int main(void) {
 
     // -- Assumptions --
     // Uniform spin distribution from 1 to 20
     // There is an equal probability of anyone winning in the spinoff
+    // No one is allowed to skip their first spin (including third player when both others bust)
+    // You are not allowed to spin again if you get 20 in your first spin
     // Players plays according to their assigned policies: 
     auto third_player_policy = third_player_optimal_policy;
     auto second_player_policy = second_player_optimal_policy;
@@ -292,11 +389,17 @@ int main(void) {
     
     // -- Run DP to fill tables --
     initialize_dp_tables(third_player_policy, second_player_policy, first_player_policy);
-
-    // -- Output first player's win probability --
+    // -- Output win probabilities --
     std::cout << "First player's win probability: " << first_player_policy_probability[0] << std::endl
                 << "Second player's win probability: " << first_player_policy_probability[1] << std::endl
-                << "Third player's win probability: " << first_player_policy_probability[2] << std::endl;
+                << "Third player's win probability: " << first_player_policy_probability[2] << std::endl << std::endl;
+
+
+    // -- Run simulation based on policies --
+    vector<Fraction> simulated_win_rates = simulate_game(third_player_policy, second_player_policy, first_player_policy, 1'000'000);
+    std::cout << "First player simulated wins: " << simulated_win_rates[0] << std::endl
+                << "Second player simulated wins: " << simulated_win_rates[1] << std::endl
+                << "Third player simulated wins: " << simulated_win_rates[2] << std::endl << std::endl;
 
     return 0;
 }
