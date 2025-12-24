@@ -73,19 +73,21 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
                     Fraction player2_win(0, 1);
                     Fraction player3_win(0, 1);
                     int max_score = max(p1, p2);
-                    int winning_player = (p1 >= p2) ? 0 : 1; // 0 for player 1, 1 for player 2
                     
                     // Calculate win probabilities
                     if (spinAgain == 0) { // Don't spin again
                         if (spin1 > max_score) {
                             player3_win = Fraction(1, 1); // wins outright (everything else 0)
-                        } else if (spin1 < max_score) {
-                            (winning_player == 0 ? player1_win : player2_win) = Fraction(1, 1); // p3 looses
+                        } else if (spin1 < max_score) { // p3 looses
+                            if (p1 == p2) // 2-way tie
+                                player1_win = player2_win = Fraction(1, 2);
+                            else // no tie
+                                (p1 > p2 ? player1_win : player2_win) = Fraction(1, 1);
                         } else { // tie with winning player
                             if (p1 == p2) { // three-way tie
                                 player1_win = player2_win = player3_win = Fraction(1, 3);
                             } else { // two-way tie
-                                (winning_player == 0 ? player1_win : player2_win) = Fraction(1, 2);
+                                (p1 > p2 ? player1_win : player2_win) = Fraction(1, 2);
                                 player3_win = Fraction(1, 2);
                             }
                         }
@@ -97,15 +99,19 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
                             int total_score = (spin1 + spin2 > 20) ? 0 : spin1 + spin2;
                             if (total_score > max_score) {
                                 player3_win += prob_new_spin * Fraction(1, 1); // wins outright (everything else 0)
-                            } else if (total_score < max_score) {
-                                (winning_player == 0 ? player1_win : player2_win) += prob_new_spin * Fraction(1, 1); // p3 looses
+                            } else if (total_score < max_score) { // p3 looses
+                                if (p1 == p2) { // 2-way tie
+                                    player1_win += prob_new_spin * Fraction(1, 2);
+                                    player2_win += prob_new_spin * Fraction(1, 2);
+                                } else // no tie
+                                    (p1 > p2 ? player1_win : player2_win) = prob_new_spin * Fraction(1, 1);
                             } else { // tie with winning player
                                 if (p1 == p2) { // three-way tie
                                     player1_win += prob_new_spin * Fraction(1, 3);
                                     player2_win += prob_new_spin * Fraction(1, 3);
                                     player3_win += prob_new_spin * Fraction(1, 3);
                                 } else { // two-way tie
-                                    (winning_player == 0 ? player1_win : player2_win) += prob_new_spin * Fraction(1, 2);
+                                    (p1 > p2 ? player1_win : player2_win) += prob_new_spin * Fraction(1, 2);
                                     player3_win += prob_new_spin * Fraction(1, 2);
                                 }
                             }
