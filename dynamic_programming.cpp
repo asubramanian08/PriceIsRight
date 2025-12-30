@@ -329,6 +329,8 @@ vector<Fraction> simulate_game(
         // Player 1's turn
         int p1_total = rand() % 20 + 1; // first spin
         Fraction policy1 = first_player_policy(p1_total); // Probability of spinning again
+        if (p1_total == 20) // Not allowed to spin again on 20
+            policy1 = Fraction(0, 1);
         if (random_decision(policy1)) { // spin again
             p1_total += rand() % 20 + 1;
             if (p1_total > 20) // bust
@@ -338,6 +340,8 @@ vector<Fraction> simulate_game(
         // Player 2's turn
         int p2_total = rand() % 20 + 1; // first spin
         Fraction policy2 = second_player_policy(p1_total, p2_total); // Probability of spinning again
+        if (p2_total == 20) // Not allowed to spin again on 20
+            policy2 = Fraction(0, 1);
         if (random_decision(policy2)) { // spin again
             p2_total += rand() % 20 + 1;
             if (p2_total > 20) // bust
@@ -347,6 +351,8 @@ vector<Fraction> simulate_game(
         // Player 3's turn
         int p3_total = rand() % 20 + 1; // first spin
         Fraction policy3 = third_player_policy(p1_total, p2_total, p3_total); // Probability of spinning again
+        if (p3_total == 20) // Not allowed to spin again on 20
+            policy3 = Fraction(0, 1);
         if (random_decision(policy3)) { // spin again
             p3_total += rand() % 20 + 1;
             if (p3_total > 20) // bust
@@ -378,6 +384,7 @@ vector<Fraction> simulate_game(
     }
 
     // Return win probabilities
+    assert(p1_wins + p2_wins + p3_wins == num_simulations);
     return {Fraction(p1_wins, num_simulations), Fraction(p2_wins, num_simulations), Fraction(p3_wins, num_simulations)};
 }
 
@@ -386,7 +393,7 @@ vector<Fraction> simulate_game(
 int main(void) {
 
     // -- Assumptions --
-    // Uniform spin distribution from 1 to 20
+    // Uniform spin distribution from 1 to 20 (Using 1-20 instead of 5-100 or 5 cents - $1)
     // There is an equal probability of anyone winning in the spinoff
     // No one is allowed to skip their first spin (including third player when both others bust)
     // You are not allowed to spin again if you get 20 in your first spin
