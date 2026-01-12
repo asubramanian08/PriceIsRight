@@ -19,31 +19,55 @@ Fraction second_player_policy_probability[21][3]; // incorporate second player p
 Fraction first_player_probability[21][2][3];
 // Win probability: (player # - 1)
 Fraction first_player_policy_probability[3]; // incorporate first player policy (expected win rates)
+// Win probabilities of optimal play (with oracle knowledge):
+Fraction optimal_third_player_probability[21][21][21][2][3];
+Fraction optimal_third_player_policy_probability[21][21][3];
+Fraction optimal_second_player_probability[21][21][2][3];
+Fraction optimal_second_player_policy_probability[21][3];
+Fraction optimal_first_player_probability[21][2][3];
+Fraction optimal_first_player_policy_probability[3];
 
 
 // ---- Policies -----
-// PROBLEM: We give C1 and C2 data in their policies that describe exactly what later contestants policies are
-//      something they don't have access to in a contest
-//      If you really want to simulate without this knowledge, don't use the DP values in the policy
+// NOTE: An ORACLE policy bases its decision on knowing later player's policies (violating the order of gameplay)
+//       Most policies (non-oracle) act based on if later players act optimally (requires "optimal" DP tables filled)
 
-// Optimal 3rd player policy (for winning game): Spin again if less than max score
-Fraction third_player_optimal_policy(int player1_score, int player2_score, int spin1) {
+// Optimal 3rd player policy (for winning game) ORACLE
+Fraction third_player_oracle_optimal_policy(int player1_score, int player2_score, int spin1) {
     Fraction win_prob_if_spin = third_player_probability[player1_score][player2_score][spin1][1][2];
     Fraction win_prob_if_no_spin = third_player_probability[player1_score][player2_score][spin1][0][2];
     return (win_prob_if_spin > win_prob_if_no_spin) ? Fraction(1, 1) : Fraction(0, 1);
 }
+// Optimal 3rd player policy (for winning game) NOT ORACLE
+Fraction third_player_optimal_policy(int player1_score, int player2_score, int spin1) {
+    Fraction win_prob_if_spin = optimal_third_player_probability[player1_score][player2_score][spin1][1][2];
+    Fraction win_prob_if_no_spin = optimal_third_player_probability[player1_score][player2_score][spin1][0][2];
+    return (win_prob_if_spin > win_prob_if_no_spin) ? Fraction(1, 1) : Fraction(0, 1);
+}
 
-// Optimal 2nd player policy (for winning game) -- ASSUMING 3RD PLAYER ACTS ACCORDING TO THEIR POLICY
-Fraction second_player_optimal_policy(int player1_score, int spin1) {
+// Optimal 2nd player policy (for winning game) ORACLE -- ASSUMING IT KNOWS 3RD PLAYER POLICY
+Fraction second_player_oracle_optimal_policy(int player1_score, int spin1) {
     Fraction win_prob_if_spin = second_player_probability[player1_score][spin1][1][1];
     Fraction win_prob_if_no_spin = second_player_probability[player1_score][spin1][0][1];
     return (win_prob_if_spin > win_prob_if_no_spin) ? Fraction(1, 1) : Fraction(0, 1);
 }
+// Optimal 2nd player policy (for winning game) NOT ORACLE
+Fraction second_player_optimal_policy(int player1_score, int spin1) {
+    Fraction win_prob_if_spin = optimal_second_player_probability[player1_score][spin1][1][1];
+    Fraction win_prob_if_no_spin = optimal_second_player_probability[player1_score][spin1][0][1];
+    return (win_prob_if_spin > win_prob_if_no_spin) ? Fraction(1, 1) : Fraction(0, 1);
+}
 
-// Optimal 1st player policy (for winning game) -- ASSUMING 2ND & 3RD PLAYER ACTS ACCORDING TO THEIR POLICY
-Fraction first_player_optimal_policy(int spin1) {
+// Optimal 1st player policy (for winning game) ORACLE -- ASSUMING IT KNOWS 2ND & 3RD PLAYER POLICY
+Fraction first_player_oracle_optimal_policy(int spin1) {
     Fraction win_prob_if_spin = first_player_probability[spin1][1][0];
     Fraction win_prob_if_no_spin = first_player_probability[spin1][0][0];
+    return (win_prob_if_spin > win_prob_if_no_spin) ? Fraction(1, 1) : Fraction(0, 1);
+}
+// Optimal 1st player policy (for winning game) NOT ORACLE
+Fraction first_player_optimal_policy(int spin1) {
+    Fraction win_prob_if_spin = optimal_first_player_probability[spin1][1][0];
+    Fraction win_prob_if_no_spin = optimal_first_player_probability[spin1][0][0];
     return (win_prob_if_spin > win_prob_if_no_spin) ? Fraction(1, 1) : Fraction(0, 1);
 }
 
@@ -153,9 +177,9 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
             assert((player1_win + player2_win + player3_win) == Fraction(1, 1)); // Ensure probabilities sum to 1
 
             // Set all array values
-            third_player_policy_probability[p1][p2][0] += player1_win;
-            third_player_policy_probability[p1][p2][1] += player2_win;
-            third_player_policy_probability[p1][p2][2] += player3_win;
+            third_player_policy_probability[p1][p2][0] = player1_win;
+            third_player_policy_probability[p1][p2][1] = player2_win;
+            third_player_policy_probability[p1][p2][2] = player3_win;
         }
 
     // Calculate the 2nd player's options
@@ -225,9 +249,9 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
         assert((player1_win + player2_win + player3_win) == Fraction(1, 1)); // Ensure probabilities sum to 1
 
         // Set all array values
-        second_player_policy_probability[p1][0] += player1_win;
-        second_player_policy_probability[p1][1] += player2_win;
-        second_player_policy_probability[p1][2] += player3_win;
+        second_player_policy_probability[p1][0] = player1_win;
+        second_player_policy_probability[p1][1] = player2_win;
+        second_player_policy_probability[p1][2] = player3_win;
     }
 
     // Calculate the 1st player's options
@@ -295,9 +319,9 @@ void initialize_dp_tables(Fraction (*third_player_policy)(int p1, int p2, int sp
         assert((player1_win + player2_win + player3_win) == Fraction(1, 1)); // Ensure probabilities sum to 1
 
         // Set all array values
-        first_player_policy_probability[0] += player1_win;
-        first_player_policy_probability[1] += player2_win;
-        first_player_policy_probability[2] += player3_win;
+        first_player_policy_probability[0] = player1_win;
+        first_player_policy_probability[1] = player2_win;
+        first_player_policy_probability[2] = player3_win;
     }
 }
 
@@ -402,6 +426,14 @@ int main(void) {
     auto second_player_policy = second_player_optimal_policy;
     auto first_player_policy = first_player_optimal_policy;
 
+    // -- Initialize "optimal" DP tables for reference --
+    initialize_dp_tables(third_player_oracle_optimal_policy, second_player_oracle_optimal_policy, first_player_oracle_optimal_policy);
+    copy(&third_player_probability[0][0][0][0][0], &third_player_probability[0][0][0][0][0] + sizeof(third_player_probability)/sizeof(Fraction), &optimal_third_player_probability[0][0][0][0][0]);
+    copy(&third_player_policy_probability[0][0][0], &third_player_policy_probability[0][0][0] + sizeof(third_player_policy_probability)/sizeof(Fraction), &optimal_third_player_policy_probability[0][0][0]);
+    copy(&second_player_probability[0][0][0][0], &second_player_probability[0][0][0][0] + sizeof(second_player_probability)/sizeof(Fraction), &optimal_second_player_probability[0][0][0][0]);
+    copy(&second_player_policy_probability[0][0], &second_player_policy_probability[0][0] + sizeof(second_player_policy_probability)/sizeof(Fraction), &optimal_second_player_policy_probability[0][0]);
+    copy(&first_player_probability[0][0][0], &first_player_probability[0][0][0] + sizeof(first_player_probability)/sizeof(Fraction), &optimal_first_player_probability[0][0][0]);
+    copy(&first_player_policy_probability[0], &first_player_policy_probability[0] + sizeof(first_player_policy_probability)/sizeof(Fraction), &optimal_first_player_policy_probability[0]);
     
     // -- Run DP to fill tables --
     initialize_dp_tables(third_player_policy, second_player_policy, first_player_policy);
