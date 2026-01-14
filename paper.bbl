@@ -1,0 +1,589 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{Bayon2025}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=0921b25b38b9b7f81223376107605a17}{%
+           family={Bayón},
+           familyi={B\bibinitperiod},
+           given={Luis},
+           giveni={L\bibinitperiod}}}%
+        {{hash=d32a799f84fbbfdbf32655ac27cdbb27}{%
+           family={Fortuny-Ayuso},
+           familyi={F\bibinithyphendelim A\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod}}}%
+        {{hash=fc3d8ff61e201104c7e7655e248563fa}{%
+           family={Grau},
+           familyi={G\bibinitperiod},
+           given={José\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=ee2be8b35a2b3be650fc0ef2c4599a9e}{%
+           family={Oller-Marcén},
+           familyi={O\bibinithyphendelim M\bibinitperiod},
+           given={A.M.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c405e4b4053db93338e24dbe77f2b11d}{%
+           family={Ruiz},
+           familyi={R\bibinitperiod},
+           given={M.M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{4dd18c4886f6941af3cdacc6843c276d}
+      \strng{fullhash}{9686635871bf4ba7c5f6a4473ff9edc8}
+      \strng{fullhashraw}{9686635871bf4ba7c5f6a4473ff9edc8}
+      \strng{bibnamehash}{4dd18c4886f6941af3cdacc6843c276d}
+      \strng{authorbibnamehash}{4dd18c4886f6941af3cdacc6843c276d}
+      \strng{authornamehash}{4dd18c4886f6941af3cdacc6843c276d}
+      \strng{authorfullhash}{9686635871bf4ba7c5f6a4473ff9edc8}
+      \strng{authorfullhashraw}{9686635871bf4ba7c5f6a4473ff9edc8}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Applied Mathematics and Computation}
+      \field{title}{Nash equilibria in the Showcase Showdown game with unlimited spins}
+      \field{volume}{497}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.1016/j.amc.2025.129368
+      \endverb
+    \endentry
+    \entry{Coe1995}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=bd091540eaf8a2f8739ace2972a83454}{%
+           family={Coe},
+           familyi={C\bibinitperiod},
+           given={Paul\bibnamedelima R.},
+           giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=1c77f8d1c3e2d96470e2c89cc17c03be}{%
+           family={Butterworth},
+           familyi={B\bibinitperiod},
+           given={William},
+           giveni={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{bf14e772b3df3227753468dd2a084650}
+      \strng{fullhash}{bf14e772b3df3227753468dd2a084650}
+      \strng{fullhashraw}{bf14e772b3df3227753468dd2a084650}
+      \strng{bibnamehash}{bf14e772b3df3227753468dd2a084650}
+      \strng{authorbibnamehash}{bf14e772b3df3227753468dd2a084650}
+      \strng{authornamehash}{bf14e772b3df3227753468dd2a084650}
+      \strng{authorfullhash}{bf14e772b3df3227753468dd2a084650}
+      \strng{authorfullhashraw}{bf14e772b3df3227753468dd2a084650}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The American Statistician}
+      \field{number}{3}
+      \field{title}{Optimal stopping in ``The Showcase Showdown''}
+      \field{volume}{49}
+      \field{year}{1995}
+      \field{pages}{271\bibrangedash 275}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1080/00031305.1995.10476163
+      \endverb
+    \endentry
+    \entry{DeLosSantos2012}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=090b9fd16e783b357277faa884f5bc2a}{%
+           family={De\bibnamedelima los\bibnamedelima Santos},
+           familyi={D\bibinitperiod\bibinitdelim l\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={Babur},
+           giveni={B\bibinitperiod}}}%
+        {{hash=6fc88c6bae8c9f898c876dbb9c822fff}{%
+           family={Hortaçsu},
+           familyi={H\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+        {{hash=65b60f373321dd0401476767ae7a04eb}{%
+           family={Wildenbeest},
+           familyi={W\bibinitperiod},
+           given={Matthijs\bibnamedelima R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{325f8fd3a6bf32abf7aa6b1847abb311}
+      \strng{fullhash}{325f8fd3a6bf32abf7aa6b1847abb311}
+      \strng{fullhashraw}{325f8fd3a6bf32abf7aa6b1847abb311}
+      \strng{bibnamehash}{325f8fd3a6bf32abf7aa6b1847abb311}
+      \strng{authorbibnamehash}{325f8fd3a6bf32abf7aa6b1847abb311}
+      \strng{authornamehash}{325f8fd3a6bf32abf7aa6b1847abb311}
+      \strng{authorfullhash}{325f8fd3a6bf32abf7aa6b1847abb311}
+      \strng{authorfullhashraw}{325f8fd3a6bf32abf7aa6b1847abb311}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Management Science}
+      \field{number}{12}
+      \field{title}{Consumer Search on the Internet}
+      \field{volume}{58}
+      \field{year}{2012}
+      \field{pages}{2229\bibrangedash 2247}
+      \range{pages}{19}
+    \endentry
+    \entry{Evans2024}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=a216564a93332e971fb46414b51cc4f5}{%
+           family={Evans},
+           familyi={E\bibinitperiod},
+           given={Benjamin\bibnamedelima Patrick},
+           giveni={B\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=53551a701f0a1c3353fc7bc983bfd982}{%
+           family={Prokopenko},
+           familyi={P\bibinitperiod},
+           given={Mikhail},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{a513cc2a1736360bb7e1ca5368199f69}
+      \strng{fullhash}{a513cc2a1736360bb7e1ca5368199f69}
+      \strng{fullhashraw}{a513cc2a1736360bb7e1ca5368199f69}
+      \strng{bibnamehash}{a513cc2a1736360bb7e1ca5368199f69}
+      \strng{authorbibnamehash}{a513cc2a1736360bb7e1ca5368199f69}
+      \strng{authornamehash}{a513cc2a1736360bb7e1ca5368199f69}
+      \strng{authorfullhash}{a513cc2a1736360bb7e1ca5368199f69}
+      \strng{authorfullhashraw}{a513cc2a1736360bb7e1ca5368199f69}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Theory and Decision}
+      \field{number}{1}
+      \field{title}{Bounded Rationality for Relaxing Best Response and Mutual Consistency: The Quantal Hierarchy Model of Decision Making}
+      \field{volume}{96}
+      \field{year}{2024}
+      \field{pages}{71\bibrangedash 111}
+      \range{pages}{41}
+      \verb{doi}
+      \verb 10.1007/s11238-023-09941-z
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/s11238-023-09941-z
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/s11238-023-09941-z
+      \endverb
+    \endentry
+    \entry{Honka2014}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=f6cc571bc3fbe3526076bbd7f0b90b7c}{%
+           family={Honka},
+           familyi={H\bibinitperiod},
+           given={Elisabeth},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{f6cc571bc3fbe3526076bbd7f0b90b7c}
+      \strng{fullhash}{f6cc571bc3fbe3526076bbd7f0b90b7c}
+      \strng{fullhashraw}{f6cc571bc3fbe3526076bbd7f0b90b7c}
+      \strng{bibnamehash}{f6cc571bc3fbe3526076bbd7f0b90b7c}
+      \strng{authorbibnamehash}{f6cc571bc3fbe3526076bbd7f0b90b7c}
+      \strng{authornamehash}{f6cc571bc3fbe3526076bbd7f0b90b7c}
+      \strng{authorfullhash}{f6cc571bc3fbe3526076bbd7f0b90b7c}
+      \strng{authorfullhashraw}{f6cc571bc3fbe3526076bbd7f0b90b7c}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{RAND Journal of Economics}
+      \field{number}{4}
+      \field{title}{Quantifying Search and Switching Costs in the {U.S.} Auto Insurance Industry}
+      \field{volume}{45}
+      \field{year}{2014}
+      \field{pages}{847\bibrangedash 884}
+      \range{pages}{38}
+    \endentry
+    \entry{Teeselink2024}{unpublished}{}{}
+      \name{author}{4}{}{%
+        {{hash=4a12244b233bec2ef3e76884d55c50df}{%
+           family={Klein\bibnamedelima Teeselink},
+           familyi={K\bibinitperiod\bibinitdelim T\bibinitperiod},
+           given={Bouke},
+           giveni={B\bibinitperiod}}}%
+        {{hash=febe590a22059502cac65ae6bccb37b3}{%
+           family={Dolder},
+           familyi={D\bibinitperiod},
+           given={Dennie},
+           giveni={D\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=4e4b0822eb733fbc94f30f49cb0ffcd9}{%
+           family={Assem},
+           familyi={A\bibinitperiod},
+           given={Martijn\bibnamedelima J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           prefix={van\bibnamedelima den},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+        {{hash=b178190447929a67fe84444c761100af}{%
+           family={Dana},
+           familyi={D\bibinitperiod},
+           given={Jason},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{3c4d4f24889107a33e31dab512c0f9e9}
+      \strng{fullhash}{833f387d9cab8d93d41b1b2029c2f35d}
+      \strng{fullhashraw}{833f387d9cab8d93d41b1b2029c2f35d}
+      \strng{bibnamehash}{3c4d4f24889107a33e31dab512c0f9e9}
+      \strng{authorbibnamehash}{3c4d4f24889107a33e31dab512c0f9e9}
+      \strng{authornamehash}{3c4d4f24889107a33e31dab512c0f9e9}
+      \strng{authorfullhash}{833f387d9cab8d93d41b1b2029c2f35d}
+      \strng{authorfullhashraw}{833f387d9cab8d93d41b1b2029c2f35d}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Games and Economic Behavior, forthcoming, (SSRN 4130176)}
+      \field{title}{High-Stakes Failures of Backward Induction: Evidence from {\em The Price Is Right}}
+      \field{year}{2024}
+    \endentry
+    \entry{Mazalov2010}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=20b1f54baea705594d33a5b4877c8355}{%
+           family={Mazalov},
+           familyi={M\bibinitperiod},
+           given={Vladimir\bibnamedelima V.},
+           giveni={V\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=a8f3037491f429498cb1a5bfc98116d6}{%
+           family={Ivashko},
+           familyi={I\bibinitperiod},
+           given={Anna\bibnamedelima A.},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{c62bd71b84c374525cd486000cf19e96}
+      \strng{fullhash}{c62bd71b84c374525cd486000cf19e96}
+      \strng{fullhashraw}{c62bd71b84c374525cd486000cf19e96}
+      \strng{bibnamehash}{c62bd71b84c374525cd486000cf19e96}
+      \strng{authorbibnamehash}{c62bd71b84c374525cd486000cf19e96}
+      \strng{authornamehash}{c62bd71b84c374525cd486000cf19e96}
+      \strng{authorfullhash}{c62bd71b84c374525cd486000cf19e96}
+      \strng{authorfullhashraw}{c62bd71b84c374525cd486000cf19e96}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Probability in the Engineering and Informational Sciences}
+      \field{number}{3}
+      \field{title}{Equilibrium in n-person game of showcase showdown}
+      \field{volume}{24}
+      \field{year}{2010}
+      \field{pages}{397\bibrangedash 403}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1017/S0269964810000045
+      \endverb
+    \endentry
+    \entry{ChatGPT2026}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=0523b13262b12c215d8009938f5c14f1}{%
+           family={{OpenAI}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{fullhash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{fullhashraw}{0523b13262b12c215d8009938f5c14f1}
+      \strng{bibnamehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authorbibnamehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authornamehash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authorfullhash}{0523b13262b12c215d8009938f5c14f1}
+      \strng{authorfullhashraw}{0523b13262b12c215d8009938f5c14f1}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://chat.openai.com}}
+      \field{note}{Large language model, version GPT-5.2. Accessed January 2026}
+      \field{title}{ChatGPT}
+      \field{year}{2026}
+    \endentry
+    \entry{Rust1987}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d21cb42e5da1f3188f3684e88b665332}{%
+           family={Rust},
+           familyi={R\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{d21cb42e5da1f3188f3684e88b665332}
+      \strng{fullhash}{d21cb42e5da1f3188f3684e88b665332}
+      \strng{fullhashraw}{d21cb42e5da1f3188f3684e88b665332}
+      \strng{bibnamehash}{d21cb42e5da1f3188f3684e88b665332}
+      \strng{authorbibnamehash}{d21cb42e5da1f3188f3684e88b665332}
+      \strng{authornamehash}{d21cb42e5da1f3188f3684e88b665332}
+      \strng{authorfullhash}{d21cb42e5da1f3188f3684e88b665332}
+      \strng{authorfullhashraw}{d21cb42e5da1f3188f3684e88b665332}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Econometrica}
+      \field{number}{5}
+      \field{title}{Optimal Replacement of {GMC} Bus Engines: An Empirical Model of {Harold Zurcher}}
+      \field{volume}{55}
+      \field{year}{1987}
+      \field{pages}{999\bibrangedash 1033}
+      \range{pages}{35}
+    \endentry
+    \entry{Sakaguchi2005}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=22dcd1b8cd7aa6ad7bc5f388e1bffeba}{%
+           family={Sakaguchi},
+           familyi={S\bibinitperiod},
+           given={Minoru},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{fullhash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{fullhashraw}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{bibnamehash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{authorbibnamehash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{authornamehash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{authorfullhash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{authorfullhashraw}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \field{extraname}{1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Sci. Math. Jpn.}
+      \field{title}{Equilibrium in two-player games of ``Showcase Showdown''}
+      \field{volume}{61}
+      \field{year}{2005}
+      \field{pages}{145\bibrangedash 151}
+      \range{pages}{7}
+    \endentry
+    \entry{Sakaguchi2007}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=22dcd1b8cd7aa6ad7bc5f388e1bffeba}{%
+           family={Sakaguchi},
+           familyi={S\bibinitperiod},
+           given={Minoru},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{fullhash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{fullhashraw}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{bibnamehash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{authorbibnamehash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{authornamehash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{authorfullhash}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \strng{authorfullhashraw}{22dcd1b8cd7aa6ad7bc5f388e1bffeba}
+      \field{extraname}{2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Game Theory and Applications}
+      \field{title}{Players' information in two-player games of ``Score Showdown''}
+      \field{volume}{11}
+      \field{year}{2007}
+      \field{pages}{111\bibrangedash 124}
+      \range{pages}{14}
+    \endentry
+    \entry{ShowcaseShowdownWiki}{misc}{}{}
+      \list{organization}{1}{%
+        {Fandom}%
+      }
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://priceisright.fandom.com/wiki/Showcase_Showdown}}
+      \field{note}{Accessed: 2026-01-13}
+      \field{title}{ShowcaseShowdown}
+      \field{year}{n.d.}
+      \verb{urlraw}
+      \verb https://priceisright.fandom.com/wiki/Showcase_Showdown
+      \endverb
+      \verb{url}
+      \verb https://priceisright.fandom.com/wiki/Showcase_Showdown
+      \endverb
+    \endentry
+    \entry{Simon1955}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=09c462602325128c408aa39c70c6ae62}{%
+           family={Simon},
+           familyi={S\bibinitperiod},
+           given={Herbert\bibnamedelima A.},
+           giveni={H\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{09c462602325128c408aa39c70c6ae62}
+      \strng{fullhash}{09c462602325128c408aa39c70c6ae62}
+      \strng{fullhashraw}{09c462602325128c408aa39c70c6ae62}
+      \strng{bibnamehash}{09c462602325128c408aa39c70c6ae62}
+      \strng{authorbibnamehash}{09c462602325128c408aa39c70c6ae62}
+      \strng{authornamehash}{09c462602325128c408aa39c70c6ae62}
+      \strng{authorfullhash}{09c462602325128c408aa39c70c6ae62}
+      \strng{authorfullhashraw}{09c462602325128c408aa39c70c6ae62}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Quarterly Journal of Economics}
+      \field{number}{1}
+      \field{title}{A Behavioral Model of Rational Choice}
+      \field{volume}{69}
+      \field{year}{1955}
+      \field{pages}{99\bibrangedash 118}
+      \range{pages}{20}
+    \endentry
+    \entry{Stigler1961}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=3e27ef99bf72db975408034556b655be}{%
+           family={Stigler},
+           familyi={S\bibinitperiod},
+           given={George\bibnamedelima J.},
+           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \strng{namehash}{3e27ef99bf72db975408034556b655be}
+      \strng{fullhash}{3e27ef99bf72db975408034556b655be}
+      \strng{fullhashraw}{3e27ef99bf72db975408034556b655be}
+      \strng{bibnamehash}{3e27ef99bf72db975408034556b655be}
+      \strng{authorbibnamehash}{3e27ef99bf72db975408034556b655be}
+      \strng{authornamehash}{3e27ef99bf72db975408034556b655be}
+      \strng{authorfullhash}{3e27ef99bf72db975408034556b655be}
+      \strng{authorfullhashraw}{3e27ef99bf72db975408034556b655be}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Political Economy}
+      \field{number}{3}
+      \field{title}{The Economics of Information}
+      \field{volume}{69}
+      \field{year}{1961}
+      \field{pages}{213\bibrangedash 225}
+      \range{pages}{13}
+    \endentry
+    \entry{Sun2005}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=4ef2048ec227f3f7fe04aed4c313047f}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Baohong},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{4ef2048ec227f3f7fe04aed4c313047f}
+      \strng{fullhash}{4ef2048ec227f3f7fe04aed4c313047f}
+      \strng{fullhashraw}{4ef2048ec227f3f7fe04aed4c313047f}
+      \strng{bibnamehash}{4ef2048ec227f3f7fe04aed4c313047f}
+      \strng{authorbibnamehash}{4ef2048ec227f3f7fe04aed4c313047f}
+      \strng{authornamehash}{4ef2048ec227f3f7fe04aed4c313047f}
+      \strng{authorfullhash}{4ef2048ec227f3f7fe04aed4c313047f}
+      \strng{authorfullhashraw}{4ef2048ec227f3f7fe04aed4c313047f}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Marketing Science}
+      \field{number}{2}
+      \field{title}{Dynamic Structural Models of Consumer Behavior: Learning, Expectations, and Strategic Interactions}
+      \field{volume}{24}
+      \field{year}{2005}
+      \field{pages}{213\bibrangedash 232}
+      \range{pages}{20}
+    \endentry
+    \entry{Tenorio2002}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=3954b655a43124dbf5a98a4b30d55905}{%
+           family={Tenorio},
+           familyi={T\bibinitperiod},
+           given={Rafael},
+           giveni={R\bibinitperiod}}}%
+        {{hash=c7ea57478c341846b93f1f4b7516d2cb}{%
+           family={Cason},
+           familyi={C\bibinitperiod},
+           given={Timothy\bibnamedelima N.},
+           giveni={T\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{8184366a19afd1b3a14d627e8036dbae}
+      \strng{fullhash}{8184366a19afd1b3a14d627e8036dbae}
+      \strng{fullhashraw}{8184366a19afd1b3a14d627e8036dbae}
+      \strng{bibnamehash}{8184366a19afd1b3a14d627e8036dbae}
+      \strng{authorbibnamehash}{8184366a19afd1b3a14d627e8036dbae}
+      \strng{authornamehash}{8184366a19afd1b3a14d627e8036dbae}
+      \strng{authorfullhash}{8184366a19afd1b3a14d627e8036dbae}
+      \strng{authorfullhashraw}{8184366a19afd1b3a14d627e8036dbae}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Economic Journal}
+      \field{number}{476}
+      \field{title}{To spin or not to spin? Natural and laboratory experiments from {\em The Price Is Right}}
+      \field{volume}{112}
+      \field{year}{2002}
+      \field{pages}{170\bibrangedash 195}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1111/1468-0297.0j678
+      \endverb
+    \endentry
+    \entry{tpirepguide}{online}{}{}
+      \list{organization}{1}{%
+        {tpirepguide.com}%
+      }
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labeltitlesource}{title}
+      \field{note}{Public episode summaries used as a source for Showcase Showdown descriptions}
+      \field{title}{The Price Is Right Episode Guide}
+      \field{urlday}{26}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://tpirepguide.com
+      \endverb
+      \verb{url}
+      \verb https://tpirepguide.com
+      \endverb
+    \endentry
+    \entry{Tversky1972}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=031d0d5f9391d970f6f089af958f701d}{%
+           family={Tversky},
+           familyi={T\bibinitperiod},
+           given={Amos},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{031d0d5f9391d970f6f089af958f701d}
+      \strng{fullhash}{031d0d5f9391d970f6f089af958f701d}
+      \strng{fullhashraw}{031d0d5f9391d970f6f089af958f701d}
+      \strng{bibnamehash}{031d0d5f9391d970f6f089af958f701d}
+      \strng{authorbibnamehash}{031d0d5f9391d970f6f089af958f701d}
+      \strng{authornamehash}{031d0d5f9391d970f6f089af958f701d}
+      \strng{authorfullhash}{031d0d5f9391d970f6f089af958f701d}
+      \strng{authorfullhashraw}{031d0d5f9391d970f6f089af958f701d}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Psychological Review}
+      \field{number}{4}
+      \field{title}{Elimination by Aspects: A Theory of Choice}
+      \field{volume}{79}
+      \field{year}{1972}
+      \field{pages}{281\bibrangedash 299}
+      \range{pages}{19}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

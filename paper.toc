@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}Abstract}{2}{}%
+\contentsline {section}{\numberline {2}Introduction}{2}{}%
+\contentsline {subsection}{\numberline {2.1}The Showcase Showdown Description and Formalization}{2}{}%
+\contentsline {subsection}{\numberline {2.2}Historical Context}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Purpose and Overview of This Paper}{4}{}%
+\contentsline {section}{\numberline {3}Research}{5}{}%
+\contentsline {subsection}{\numberline {3.1}Empirical Data}{5}{}%
+\contentsline {subsection}{\numberline {3.2}Dynamic Programming}{6}{}%
+\contentsline {paragraph}{Third Contestant (C3).}{7}{}%
+\contentsline {paragraph}{Second Contestant (C2).}{7}{}%
+\contentsline {paragraph}{First Contestant (C1).}{7}{}%
+\contentsline {paragraph}{Policy Flexibility and Independence.}{8}{}%
+\contentsline {subsection}{\numberline {3.3}Monte Carlo Simulation}{8}{}%
+\contentsline {section}{\numberline {4}Applications}{9}{}%
+\contentsline {subsection}{\numberline {4.1}Optimal Play}{9}{}%
+\contentsline {subsection}{\numberline {4.2}Contestant Irrationality}{11}{}%
+\contentsline {subsection}{\numberline {4.3}Applications Beyond \textit {The Price Is Right}}{13}{}%
+\contentsline {section}{\numberline {5}Conclusion}{14}{}%
